@@ -68,17 +68,17 @@ io.reactivex.exceptions.OnErrorNotImplementedException: HTTP 404                
 
 最后找到ON_ERROR_MISSING这个静态量
 
-![image-20231225104319296](C:\Users\86156\AppData\Roaming\Typora\typora-user-images\image-20231225104319296.png)
+![image-20231225104319296](https://s2.loli.net/2023/12/26/mNWvlisbfTG8xA4.png)
 
 于是查看ON_ERROR_MISSING这个静态量在何处调用
 
-![image-20231225104457378](C:\Users\86156\AppData\Roaming\Typora\typora-user-images\image-20231225104457378.png)
+![image-20231225104457378](https://s2.loli.net/2023/12/26/RKA5drZkzQFc2Ih.png)
 
 alt+F7 发现ON_ERROR_MISSING在多处调用
 
 通过查找我们发现
 
-![image-20231225110207509](C:\Users\86156\AppData\Roaming\Typora\typora-user-images\image-20231225110207509.png)
+![image-20231225110207509](https://s2.loli.net/2023/12/26/dZlOy7iAgFIw5PL.png)
 
 在这个subscribe(Consumeer )的构造方法中默认将ON_ERROR_MISSING作为异常抛出，如果遇到error将会用ON_ERROR_MISSING进行异常抛出，通过查询可知，该error提示在retrofit请求过程中发生异常的异常处理方法未实现。
 
